@@ -127,13 +127,12 @@ def run_monitoring_session(hosts: list, count: int, interval: float) -> None:
         
         for host in hosts:
             latency = ping_host(host)
-            
+
             if latency is not None:
                 record_latency(host, latency)
-                status = "OK"
-                print(f"  {host}: {latency:.2f}ms [{status}]")
+                print(f"  {host}: {latency:.2f}ms [OK]")
             else:
-                print(f"  {host}: TIMEOUT [{status}]")
+                print(f"  {host}: TIMEOUT")
         
         if i < count - 1:
             time.sleep(interval)
